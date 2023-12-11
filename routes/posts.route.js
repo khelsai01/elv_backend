@@ -6,12 +6,15 @@ postsRouter.use(auth);
 
 postsRouter.get("/",async(req,res)=>{
 
-    const {device1,device2} = req.query;
+    const {title,device1,device2} = req.query;
     const query ={};
     const {userId} =req.body; 
 
     if(userId){
         query.userId= userId;
+    }
+    if(title){
+        query.title = title;
     }
     if(device1&& device2){
         query.device= {$and:[{device:device1},{device:device2}]};
